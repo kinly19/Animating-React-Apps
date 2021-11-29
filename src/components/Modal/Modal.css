@@ -12,10 +12,10 @@
   width: 50%;
   transition: all 0.3s ease-out;
 }
-/*Cant use transition on 'display'*/
 
 .ModalOpen {
   /* without keyframes */
+  /*Cant use transition on 'display'*/
   /* display: block; */
   /* opacity: 1; */
   /* transform: translateY(0); */
@@ -34,6 +34,8 @@
 }
 
 /*Css animations*/
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes */
+
 @keyframes openModal {
   0% {
     opacity: 0;
