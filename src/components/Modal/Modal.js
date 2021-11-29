@@ -1,6 +1,7 @@
 import React from 'react';
-
+import Transition from 'react-transition-group/Transition';
 import './Modal.css';
+
 // ============================== Notes ==============================
 // react-transition-group - Exposes simple components useful for defining 
 //  entering and exiting transitions. React Transition Group is not an animation library like React-Motion, 
@@ -18,15 +19,28 @@ import './Modal.css';
 // ===================================================================
 
 const modal = (props) => {
-
-  const cssClasses = ['Modal', props.show ? 'ModalOpen' : 'ModalClosed'];
   return (
-    <div className={cssClasses.join(' ')}>
-      <h1>A Modal</h1>
-      <button className="Button" onClick={props.closed}>
-        Dismiss
-      </button>
-    </div>
+    <Transition mountOnEnter unmountOnExit in={props.show} timeout={300}>
+      {(transitionState) => {
+        const cssClasses = [
+          "Modal",
+          transitionState === "entering"
+            ? "ModalOpen"
+            : transitionState === "exiting"
+            ? "ModalClosed"
+            : null,
+        ];
+
+        return (
+          <div className={cssClasses.join(" ")}>
+            <h1>A Modal</h1>
+            <button className="Button" onClick={props.closed}>
+              Dismiss
+            </button>
+          </div>
+        );
+      }}
+    </Transition>
   );
 };
 
